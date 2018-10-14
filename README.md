@@ -330,7 +330,7 @@ urlpatterns = [
 ]
 ```
 ## Importing CSS
-Now you add CSS to your HTML templates, in order to add CSS we need to add following lines to the top of the file (index.html)
+Now you add CSS to your HTML templates, in order to add CSS we need to add the following lines to the top of the file (index.html)
 ```
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
