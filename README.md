@@ -18,7 +18,9 @@ virtualenv ./
 6. Activate virtualenv:
 ```
 source bin/activate
-or on Windows:
+```
+Or on Windows:
+```
 cd Scripts
 activate
 ```
@@ -57,7 +59,7 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+    return HttpResponse("Hello, world. You're at the blog index.")
 
 ```
 To call the view, we need to map it to a URL, create urls.py in app folder:
@@ -139,17 +141,25 @@ from .models import BlogPost
 admin.site.register(BlogPost)
 ```
 
-## Create more views
+## Using templates
 
-Make two views: for displaying all posts and displaying only one post by its id in app/views.py:
+Create view for displaying all posts and detailed view for one post:
 ```
+#app/views.py
+
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from .models import BlogPost
+
 def allPosts(request):
-    return HttpResponse()
-def singlePost(request, id):
-    return HttpResponse()
+    blog_posts = BlogPost.objects.all()
+    context = {'blog_posts': blog_posts}
+    return render(request, 'index.html', context)
+def postDetails(request, id):
+    blog_post = BlogPost.objects.get(pk=id)
+    context = {'blog_post': blog_post}
+    return render(request, 'index.html', context)
 ```
 And update app/urls.py accordingly...
 ```
@@ -159,10 +169,9 @@ from . import views
 
 urlpatterns = [
     path('', views.allPosts, name='allPosts'),
-    path('post/<int:post_id>', views.singlePost, name='singlePost')
+    path('details/<int:id>', views.postDetails, name='details'),
 ]
 ```
-## Using templates
 Create a new file: app/templates/index.html that displays all blog posts
 ```
 {% if blog_posts %}
@@ -178,18 +187,12 @@ Create a new file: app/templates/index.html that displays all blog posts
 </div>
 {% endif %}
 ```
-Update your views to match the index.html:
-```
-def allPosts(request):
-    blog_posts = BlogPost.objects.all()
-    context = {'blog_posts': blog_posts}
-    return render(request, 'index.html', context)
-```
+
 Where blog_posts holds the result of the query and context is the object that is being used for rendering at index.html
 
 ## Using forms
 
-Create a form model in app/forms.py:
+Create a form model in app/forms.py (need to create by yourself):
 
 ```
 from django import forms
