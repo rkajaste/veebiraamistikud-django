@@ -203,6 +203,9 @@ class BlogPostForm(forms.Form):
 Inject the form model into index.html from app/views.py:
 
 ```
+...
+from .forms import BlogPostForm
+...
 def allPosts(request):
     blog_posts = BlogPost.objects.all()
     context = {
