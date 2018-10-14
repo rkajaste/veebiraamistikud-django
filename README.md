@@ -329,3 +329,10 @@ urlpatterns = [
     path('add', views.addPost, name='add')
 ]
 ```
+## Importing CSS
+Now you add CSS to your HTML templates, in order to add CSS we need to add following lines to the top of the file (index.html)
+```
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+```
+For that code to work you need to create a new folder 'static' in app root folder and add a new file style.css in there
