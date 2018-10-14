@@ -1,0 +1,34 @@
+{% if blog_post %}
+<div class="blog">
+    <form action="/edit/{{ blog_post.id }}" method="POST">
+        {% csrf_token %}
+        <input type=text name="title" value="{{ blog_post.title }}"></input>
+        <textarea name="content">{{ blog_post.content }}</textarea>
+        <input type="submit">Edit</input>
+        <a href="/delete/{{ blog_post.id }}">Delete</a>
+    </form>
+</div>
+{% endif %}
+
+{% if form %}
+<div class="add-post">
+    <form action="/add" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit"></submit>
+    </form>
+</div>
+{% endif %}
+
+{% if blog_posts %}
+<div>
+    <ul>
+    {% for post in blog_posts %}
+        <li>
+          <a href="/details/{{ post.id }}">{{ post.title }}</a>
+          <p>{{ post.content }}</p>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+{% endif %}
