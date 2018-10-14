@@ -210,6 +210,15 @@ def allPosts(request):
       'form': BlogPostForm
     }
     return render(request, 'index.html', context)
+def addPost(request):
+    if request.method == 'POST':
+        form = BlogPostForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data['title']
+            content = form.cleaned_data['content']
+            post = BlogPost(title=title, content=content).save()
+    return redirect('/')
+
 ```
 
 Update app/templates/index.html:
