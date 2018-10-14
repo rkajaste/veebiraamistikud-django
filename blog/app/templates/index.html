@@ -1,13 +1,25 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+{% if blog_posts %}
+<h1>CRUD Blog</h1>
+{% endif %}
+
 {% if blog_post %}
-<div class="blog">
     <form action="/edit/{{ blog_post.id }}" method="POST">
         {% csrf_token %}
-        <input type=text name="title" value="{{ blog_post.title }}"></input>
-        <textarea name="content">{{ blog_post.content }}</textarea>
-        <input type="submit">Edit</input>
-        <a href="/delete/{{ blog_post.id }}">Delete</a>
+        <div class="blog">
+            <input type=text name="title" value="{{ blog_post.title }}"></input>
+            <textarea name="content">{{ blog_post.content }}</textarea>
+            <div class="btn-wrapper">
+              <input type="submit" value="Edit" class="btn"></input>
+              <div class="btn">
+                <a href="/delete/{{ blog_post.id }}">
+                  <div class="delete-btn">Delete</div>
+                </a>
+              </div>
+            </div>
+        </div>
     </form>
-</div>
 {% endif %}
 
 {% if form %}
@@ -25,10 +37,16 @@
     <ul>
     {% for post in blog_posts %}
         <li>
-          <a href="/details/{{ post.id }}">{{ post.title }}</a>
-          <p>{{ post.content }}</p>
+          <a href="/details/{{ post.id }}">
+            <div class="blogpost">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.content }}</p>
+            </div>
+          </a>
         </li>
     {% endfor %}
     </ul>
 </div>
 {% endif %}
+
+

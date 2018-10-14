@@ -1,0 +1,75 @@
+body {
+  background: rgb(199, 162, 224);
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  width: 100%;
+}
+
+ul{
+  list-style: none;
+}
+
+li{
+  border: 1px solid purple;
+  border-radius: 5px;
+  width: 20%;
+  margin-top: 10px;
+}
+
+li a{
+  text-decoration: none;
+  color: black;
+}
+
+.blogpost{
+  margin-left: 5px;
+}
+
+li:hover{
+  background-color: rgb(174, 134, 201);
+  transition: 0.5s linear background-color;
+}
+
+.blog{
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.blog input{
+  margin-bottom: 10px;
+  line-height: 20px;
+}
+
+.blog textarea{
+  height: 60px;
+}
+
+.blog a{
+  text-decoration: none;
+  color: black;
+}
+
+.btn{
+  width:30%;
+  color: black;
+  margin: 10px;
+  background: none;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.btn:hover{
+  background-color: rgb(148, 93, 185);
+  transition: 0.5s linear background-color;
+  
+}
+
+.btn-wrapper{
+  display: flex;
+  justify-content: center;
+}
