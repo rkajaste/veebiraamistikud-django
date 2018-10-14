@@ -161,6 +161,8 @@ def postDetails(request, id):
     context = {'blog_post': blog_post}
     return render(request, 'index.html', context)
 ```
+Where blog_posts holds the result of the query and context is the object that is being used for rendering at index.html
+
 And update app/urls.py accordingly...
 ```
 from django.urls import path
@@ -187,9 +189,6 @@ Create a new file: app/templates/index.html that displays all blog posts
 </div>
 {% endif %}
 ```
-
-Where blog_posts holds the result of the query and context is the object that is being used for rendering at index.html
-
 ## Using forms
 
 Create a form model in app/forms.py (need to create by yourself):
@@ -302,13 +301,7 @@ def editPost(request, id):
           post.title = title
           post.content = content
           post.save()
-    return redirect('/')      
-
-def postDetails(request, id):
-    blog_post = BlogPost.objects.get(pk=id)
-    context = {'blog_post': blog_post}
-    return render(request, 'index.html', context)     
-
+    return redirect('/')         
 ```
 
 Update urls:
